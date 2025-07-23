@@ -202,8 +202,8 @@ CORS_ALLOWED_ORIGINS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # media files upload directory
-MEDIA_URL = '/media/'  # media files retrieve directory
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # media files upload directory
+# MEDIA_URL = '/media/'  # media files retrieve directory
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
