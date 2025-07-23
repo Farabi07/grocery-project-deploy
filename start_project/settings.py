@@ -198,19 +198,12 @@ CORS_ALLOWED_ORIGINS = [
 
 
 
-# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-
-# AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-# AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com'
-
-# STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
-# MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # media files upload directory
-MEDIA_URL = '/media/'  # media files retrieve directory
+
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # media files upload directory
+# MEDIA_URL = '/media/'  # media files retrieve directory
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -336,10 +329,7 @@ AWS_REGION = os.getenv('AWS_REGION')
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
 # OCR_API_URL = os.getenv('OCR_API_URL')
 # OCR_API_KEY = os.getenv('OCR_API_KEY')
-# # PayPal settings
-# PAYPAL_CLIENT_ID = os.getenv('PAYPAL_CLIENT_ID')
-# PAYPAL_CLIENT_SECRET = os.getenv('PAYPAL_CLIENT_SECRET')
-# PAYPAL_MODE = os.getenv('PAYPAL_MODE', 'sandbox')  # default to sandbox
+
 
 # Stripe settings
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY')
@@ -381,16 +371,21 @@ APPLE_CALLBACK_URL = os.getenv("APPLE_CALLBACK_URL")
 # AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 # AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
 
-# AWS_REGION = os.getenv('AWS_REGION')
-# AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
-# AWS_S3_SIGNATURE_NAME = os.getenv('AWS_S3_SIGNATURE_NAME')
-# AWS_S3_FILE_OVERWRITE = os.getenv('AWS_S3_FILE_OVERWRITE', 'False') == 'True'
-# AWS_DEFAULT_ACL = os.getenv('AWS_DEFAULT_ACL')
-# AWS_S3_VERIFY = os.getenv('AWS_S3_VERIFY', 'True') == 'True'
-# DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE', 'storages.backends.s3boto3.S3Boto3Storage')
+AWS_REGION = os.getenv('AWS_REGION')
+AWS_STORAGE_BUCKET_NAME = os.getenv('AWS_STORAGE_BUCKET_NAME')
+MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_REGION}.amazonaws.com/'
+AWS_S3_SIGNATURE_NAME = os.getenv('AWS_S3_SIGNATURE_NAME')
+AWS_S3_FILE_OVERWRITE = os.getenv('AWS_S3_FILE_OVERWRITE', 'False') == 'True'
+AWS_DEFAULT_ACL = os.getenv('AWS_DEFAULT_ACL')
+AWS_S3_VERIFY = os.getenv('AWS_S3_VERIFY', 'True') == 'True'
+DEFAULT_FILE_STORAGE = os.getenv('DEFAULT_FILE_STORAGE', 'storages.backends.s3boto3.S3Boto3Storage')
 
 
-
+# Add this to temporarily debug your settings
+print("AWS_REGION:", os.getenv('AWS_REGION'))
+print("AWS_STORAGE_BUCKET_NAME:", os.getenv('AWS_STORAGE_BUCKET_NAME'))
+print("AWS_S3_SIGNATURE_NAME:", os.getenv('AWS_S3_SIGNATURE_NAME'))
+print("DEFAULT_FILE_STORAGE:", os.getenv('DEFAULT_FILE_STORAGE'))
 
 
 
